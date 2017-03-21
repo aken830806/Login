@@ -9,33 +9,39 @@ public class GUI{
 			new GUI();
 	    }
 	GUI(){
+	    final int w = 100;
+        final int h = 40;
+        final int label_x = 120;
+	    final int textField_x = label_x + 30;
+	    final int btn_x = textField_x;
 	    final int ID_y = 80;
-	    final int ps_y = ID_y + 40;
-	    final int btn_y = ps_y + 40;
+	    final int ps_y = ID_y + h;
+	    final int btn_y = ps_y + h;
+	    
 		JFrame.setDefaultLookAndFeelDecorated(true);//?
 	    JDialog.setDefaultLookAndFeelDecorated(true);//?
 		f = new JFrame("Login");
-		f.setBounds(0,0,400,300); 
+		f.setBounds(0,0,400,300);//視窗大小 
 		f.setVisible(true); 
 		Container cp=f.getContentPane();
 		cp.setLayout(null);  //取消預設之 BorderLayout
 		//帳號
 		JLabel ID_l = new JLabel("帳號");
-		ID_l.setBounds(120,ID_y,100,40);
+		ID_l.setBounds(label_x,ID_y,w,h);
 		JTextField ID = new JTextField("");//預設文字
-		ID.setBounds(150,ID_y,100,40);
+		ID.setBounds(textField_x,ID_y,w,h);
 		cp.add(ID_l);
 		cp.add(ID);
 		//密碼
 		JLabel ps_l = new JLabel("密碼");
-        ps_l.setBounds(120,ps_y,100,40);
+        ps_l.setBounds(label_x,ps_y,w,h);
 		JPasswordField pw = new JPasswordField();
-		pw.setBounds(150,ps_y,100,40);
+		pw.setBounds(textField_x,ps_y,w,h);
 		cp.add(ps_l);
 		cp.add(pw);
 		//登入
 		JButton loginBtn=new JButton("登入");
-		loginBtn.setBounds(150,btn_y,100,40);  //自行決定元件位置與大小(x,y,w,h)
+		loginBtn.setBounds(btn_x,btn_y,w,h);  //自行決定元件位置與大小(x,y,w,h)
 		cp.add(loginBtn); 
 		//關閉視窗
 		f.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
