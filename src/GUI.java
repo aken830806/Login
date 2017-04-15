@@ -3,11 +3,11 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
-public class GUI{
+class GUI{
 	JFrame f;
-	public static void main(String args[]) {
+	/*public static void main(String args[]) {
 			new GUI();
-	    }
+	    }*/
 	GUI(){
 	    final int w = 100;
         final int h = 40;
@@ -15,13 +15,14 @@ public class GUI{
 	    final int textField_x = label_x + 30;
 	    final int btn_x = textField_x;
 	    final int ID_y = 80;
-	    final int ps_y = ID_y + h;
-	    final int btn_y = ps_y + h;
+	    final int pw_y = ID_y + h;
+	    final int btn_y = pw_y + h;
 	    
+	    //Login login = new Login();
 		JFrame.setDefaultLookAndFeelDecorated(true);//?
 	    JDialog.setDefaultLookAndFeelDecorated(true);//?
 		f = new JFrame("Login");
-		f.setBounds(0,0,400,300);//視窗大小 
+		f.setBounds(0,0,400,300);//視窗位置與大小 
 		f.setVisible(true); 
 		Container cp=f.getContentPane();
 		cp.setLayout(null);  //取消預設之 BorderLayout
@@ -33,11 +34,11 @@ public class GUI{
 		cp.add(ID_l);
 		cp.add(ID);
 		//密碼
-		JLabel ps_l = new JLabel("密碼");
-        ps_l.setBounds(label_x,ps_y,w,h);
+		JLabel pw_l = new JLabel("密碼");
+        pw_l.setBounds(label_x,pw_y,w,h);
 		JPasswordField pw = new JPasswordField();
-		pw.setBounds(textField_x,ps_y,w,h);
-		cp.add(ps_l);
+		pw.setBounds(textField_x,pw_y,w,h);
+		cp.add(pw_l);
 		cp.add(pw);
 		//登入
 		JButton loginBtn=new JButton("登入");
