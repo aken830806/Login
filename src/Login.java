@@ -3,18 +3,49 @@ import java.util.*;
 
 public class Login{
     //GUI g = new GUI();
+    BufferedReader br;
+    BufferedWriter bw;
     Scanner s = new Scanner(System.in);
     public static void main(String args[]){
-            Login login = new Login();       
+            Login login = new Login();
     }
     Login(){
-        //BufferedReader br = new BufferedReader(new FileReader("Login.txt"));
     }
-    Boolean register(String ID,String pw){//未完成
+    Boolean register(String ID,String pw){
+        switch(this.IDCheck(ID)){
+            case "Amo":
+            
+            case "Eng":
+            
+            case "Num":
+            
+            case "Ill":
+            
+            case "Suc":
+                switch(this.pwCheck(pw)){
+                case "Amo":
+                
+                case "Ill":
+                
+                case "Suc":{
+                    if(this.dataRepeatCheck(ID)){
+                        try {
+                            bw = new BufferedWriter(new FileWriter("Login.txt"));
+                            bw.write(ID.toLowerCase() + " " + pw.toLowerCase() + "\r\n");
+                            bw.close();
+                        } catch (IOException e) {
+                            // TODO 自動產生的 catch 區塊
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        default:
+        }
         return false;
     }
     String IDCheck(String ID){
-        //字數3~15、包含英文+數字
+        //字數3~15、包含英文+數字、非法字元
         if(!this.inputAmountCheck(ID))
             return "Amo";
         if(!this.inputIncludeEnglishCheck(ID))
@@ -26,11 +57,9 @@ public class Login{
         return "Suc";
     }
     String pwCheck(String ID){
-        //字數3~15、包含英文+數字
+        //字數3~15、非法字元
         if(!this.inputAmountCheck(ID))
             return "Amo";
-        if(!this.inputIncludeNumberCheck(ID))
-            return "Num";
         if(!this.inputIncludeIllegalCheck(ID))
             return "Ill";
         return "Suc";
@@ -69,5 +98,21 @@ public class Login{
                 ctr = ctr + 1;
             }
             return false;
+    }
+    Boolean dataRepeatCheck(String check){//未完成
+        String line;
+       try {
+           br = new BufferedReader(new FileReader("Login.txt"));
+           while((line = br.readLine()) != null){
+               if(line.equals(check))
+                   return false;
+               }
+           br.close();
+           return true;
+    } catch (IOException e) {
+        // TODO 自動產生的 catch 區塊
+        e.printStackTrace();
+    }
+        return false;
     }
 }
