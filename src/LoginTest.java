@@ -1,9 +1,9 @@
 import static org.junit.Assert.*;
-
 import org.junit.Test;
+import org.junit.*;
 
 public class LoginTest {
-    Login l = new Login();
+    Login  l = new Login();
     @Test
     public void testInputAmountCheck() {
         //字數3~15
@@ -12,7 +12,7 @@ public class LoginTest {
     }
     @Test
     public void testInputIncludeNumberCheck() {
-        //包含數字
+        //包含數字a
         assertEquals(l.inputIncludeNumberCheck("4112e"),true);
         assertEquals(l.inputIncludeNumberCheck("asdada"),false);
     }
@@ -27,5 +27,11 @@ public class LoginTest {
         //非法字元
         assertEquals(l.inputIncludeIllegalCheck("qweq*312"),true);
         assertEquals(l.inputIncludeIllegalCheck("12asfas"),false);
+    }
+    @Test
+    public void testDataRepeatCheck(){
+        assertEquals(l.dataRepeatCheck("ghk"),true);
+        assertEquals(l.dataRepeatCheck("asd"),false);
+        assertEquals(l.dataRepeatCheck("sfs"),true);
     }
 }

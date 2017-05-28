@@ -8,6 +8,7 @@ public class Login{
     Scanner s = new Scanner(System.in);
     public static void main(String args[]){
             Login login = new Login();
+            login.dataRepeatCheck("ghk");
     }
     Login(){
     }
@@ -100,15 +101,17 @@ public class Login{
             return false;
     }
     Boolean dataRepeatCheck(String check){//未完成
-        String line;
+       String line;
+       String[] temp;
        try {
            br = new BufferedReader(new FileReader("Login.txt"));
            while((line = br.readLine()) != null){
-               if(line.equals(check))
-                   return false;
+               temp = line.split(" ");
+               if(temp[0].equals(check))
+                   return true;
                }
            br.close();
-           return true;
+           return false;
     } catch (IOException e) {
         // TODO 自動產生的 catch 區塊
         e.printStackTrace();
