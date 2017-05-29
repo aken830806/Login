@@ -7,12 +7,13 @@ public class LoginTest {
     @Test
     public void testInputAmountCheck() {
         //字數3~15
+        assertEquals(l.inputAmountCheck("sa"),false);
         assertEquals(l.inputAmountCheck("4112e"),true);
         assertEquals(l.inputAmountCheck("asdadagdfgsdggsd"),false);
     }
     @Test
     public void testInputIncludeNumberCheck() {
-        //包含數字a
+        //包含數字
         assertEquals(l.inputIncludeNumberCheck("4112e"),true);
         assertEquals(l.inputIncludeNumberCheck("asdada"),false);
     }
@@ -31,7 +32,11 @@ public class LoginTest {
     @Test
     public void testDataRepeatCheck(){
         assertEquals(l.dataRepeatCheck("ghk"),true);
-        assertEquals(l.dataRepeatCheck("asd"),false);
+        assertEquals(l.dataRepeatCheck("asd"),false);//test密碼吻合
         assertEquals(l.dataRepeatCheck("sfs"),true);
+    }
+    @Test
+    public void testRegister(){
+        l.register("aken2546","801609");
     }
 }

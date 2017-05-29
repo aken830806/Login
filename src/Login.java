@@ -10,9 +10,7 @@ public class Login{
             Login login = new Login();
             login.dataRepeatCheck("ghk");
     }
-    Login(){
-    }
-    Boolean register(String ID,String pw){
+    void register(String ID,String pw){
         switch(this.IDCheck(ID)){
             case "Amo":
             
@@ -29,7 +27,7 @@ public class Login{
                 case "Ill":
                 
                 case "Suc":{
-                    if(this.dataRepeatCheck(ID)){
+                    if(!this.dataRepeatCheck(ID)){
                         try {
                             bw = new BufferedWriter(new FileWriter("Login.txt"));
                             bw.write(ID.toLowerCase() + " " + pw.toLowerCase() + "\r\n");
@@ -43,10 +41,9 @@ public class Login{
             }
         default:
         }
-        return false;
     }
     String IDCheck(String ID){
-        //计3~15璣ゅ+计獶猭じ
+        //check计3~15璣ゅ+计礚獶猭じ
         if(!this.inputAmountCheck(ID))
             return "Amo";
         if(!this.inputIncludeEnglishCheck(ID))
@@ -58,7 +55,7 @@ public class Login{
         return "Suc";
     }
     String pwCheck(String ID){
-        //计3~15獶猭じ
+        //check计3~15礚獶猭じ
         if(!this.inputAmountCheck(ID))
             return "Amo";
         if(!this.inputIncludeIllegalCheck(ID))
@@ -100,7 +97,7 @@ public class Login{
             }
             return false;
     }
-    Boolean dataRepeatCheck(String check){//ゼЧΘ
+    Boolean dataRepeatCheck(String check){
        String line;
        String[] temp;
        try {
