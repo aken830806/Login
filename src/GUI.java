@@ -5,6 +5,7 @@ import javax.swing.event.*;
 
 class GUI{
 	JFrame f;
+	JOptionPane1 message;
 	/*public static void main(String args[]) {
 			new GUI();
 	    }*/
@@ -19,8 +20,8 @@ class GUI{
 	    final int btn_y = pw_y + h;
 	    
 	    //Login login = new Login();
-		JFrame.setDefaultLookAndFeelDecorated(true);//?
-	    JDialog.setDefaultLookAndFeelDecorated(true);//?
+		JFrame.setDefaultLookAndFeelDecorated(false);//Swing 主題風格
+	    JDialog.setDefaultLookAndFeelDecorated(false);
 		f = new JFrame("Login");
 		f.setBounds(0,0,400,300);//視窗位置與大小 
 		f.setVisible(true); 
