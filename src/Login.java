@@ -2,13 +2,8 @@ import java.io.*;
 import java.util.*;
 
 public class Login{
-    GUI g = new GUI();
     BufferedReader br;
     BufferedWriter bw;
-    Scanner s = new Scanner(System.in);
-    public static void main(String args[]){
-            Login login = new Login();;
-    }
     void register(String ID,String pw){
         switch(this.IDCheck(ID)){
             case "Amo":
