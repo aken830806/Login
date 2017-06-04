@@ -31,12 +31,8 @@ public class LoginTest {
     }
     @Test
     public void testDataRepeatCheck(){
-        assertEquals(l.dataRepeatCheck("ghk"),true);
-        assertEquals(l.dataRepeatCheck("asd"),false);//test±K½X§k¦X
-        assertEquals(l.dataRepeatCheck("sfs"),true);
-    }
-    @Test
-    public void testRegister(){
-        l.register("aken2546","801609");
+        assertEquals(l.dataCheck("ghk"),true);
+        assertEquals(l.dataCheck("asd"),null);//test±K½X§k¦X
+        assertEquals(l.dataCheck("sfs"),true);
     }
 }

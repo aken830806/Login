@@ -3,7 +3,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
-class GUI{
+class GUI  implements ActionListener{
 	JFrame f;
 	Container cp;
 	JLabel ID_l;
@@ -13,7 +13,6 @@ class GUI{
 	
 	JButton loginBtn;
 	JButton registerBtn;
-	JOptionPane1 message;
 	Login login;
 	public static void main(String args[]) {
 			new GUI();
@@ -24,7 +23,7 @@ class GUI{
         
         final int label_x = 120;
 	    final int textField_x = label_x + 30;
-	    final int registerBtn_x = textField_x;
+	    final int loginBtn_x = (textField_x + w  + label_x )/2;
 	    
 	    final int ID_y = 80;
 	    final int pw_y = ID_y + h;
@@ -53,11 +52,13 @@ class GUI{
 		cp.add(pw);
 		//註冊
 		registerBtn = new JButton("註冊");
-		registerBtn.setBounds(registerBtn_x - w / 4,btn_y,w*2/3,h);
+		registerBtn.setBounds(loginBtn_x - (w*2/3),btn_y,w*2/3,h);
+		registerBtn.addActionListener(this);
 		cp.add(registerBtn); 
 		//登入
 		loginBtn=new JButton("登入");
-		loginBtn.setBounds(registerBtn_x + w/2,btn_y,w*2/3,h);  //自行決定元件位置與大小(x,y,w,h)
+		loginBtn.setBounds(loginBtn_x,btn_y,w*2/3,h);  //自行決定元件位置與大小(x,y,w,h)
+		loginBtn.addActionListener(this);
 		cp.add(loginBtn); 
 		//視窗
 		f.setLocationRelativeTo(null);//將視窗顯示在螢幕正中間
@@ -80,9 +81,11 @@ class GUI{
 	}
 	public void actionPerformed(ActionEvent event)
     {
-        if(event.getSource()==loginBtn)
-        {
-            
+        if(event.getSource()==registerBtn){
+            JOptionPane.showMessageDialog(f,login.register(ID.getText(),pw.getPassword()));
+        }
+        if(event.getSource()==loginBtn){
+            JOptionPane.showMessageDialog(f,login.login(ID.getText(),pw.getPassword()));
         }
     }
 }

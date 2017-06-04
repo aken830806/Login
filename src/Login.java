@@ -4,56 +4,75 @@ import java.util.*;
 public class Login{
     BufferedReader br;
     BufferedWriter bw;
-    void register(String ID,String pw){
-        switch(this.IDCheck(ID)){
-            case "Amo":
-            
-            case "Eng":
-            
-            case "Num":
-            
-            case "Ill":
-            
+    final String Amo = "請輸入3~15個字";
+    final String Eng = "請輸入包含英文的內容";
+    final String Num = "請輸入包含數字的內容";
+    final String Ill = "包含英文、數字以外的內容，請重新輸入";
+    final String Suc = "";
+    
+    String register(String ID,char[] pws){
+        String pw;
+        switch(IDCheck(ID)){
+            case Amo:
+            case Eng:
+            case Num:
+            case Ill:
+                return "帳號 " + IDCheck(ID);
             case "Suc":
-                switch(this.pwCheck(pw)){
-                case "Amo":
-                
-                case "Ill":
-                
-                case "Suc":{
-                    if(!this.dataRepeatCheck(ID)){
-                        try {
-                            bw = new BufferedWriter(new FileWriter("Login.txt"));
-                            bw.write(ID.toLowerCase() + " " + pw.toLowerCase() + "\r\n");
-                            bw.close();
-                        } catch (IOException e) {
-                            // TODO 自動產生的 catch 區塊
-                            e.printStackTrace();
+                pw = String.valueOf(pws);
+                switch(pwCheck(pw)){
+                    case Amo:
+                    case Ill:
+                        return "密碼 " + pwCheck(pw);
+                    case "Suc":{
+                        if(dataCheck(ID) == null){
+                            try {
+                                bw = new BufferedWriter(new FileWriter("Login.txt",true));//true代表附加
+                                bw.write(ID.toLowerCase() + " " + pw.toLowerCase() + "\r\n");
+                                bw.close();
+                                return "註冊成功";
+                            } catch (IOException e) {
+                                // TODO 自動產生的 catch 區塊
+                                e.printStackTrace();
+                            }
+                        }else{
+                            return "此帳號已註冊";
                         }
                     }
                 }
             }
-        default:
+        return "註冊失敗 請重試";
+    }
+    String login(String ID,char[] pws){
+        String pw;
+        pw = String.valueOf(pws);
+        if(dataCheck(ID) == null){
+            return "此帳號不存在";
+        }else if(pw.equals(dataCheck(ID))){
+            return "登入成功";
+        }else{
+            return "密碼錯誤 請重試";
         }
     }
+    
     String IDCheck(String ID){
         //check字數3~15、包含英文+數字、無非法字元
         if(!this.inputAmountCheck(ID))
-            return "Amo";
+            return Amo;
         if(!this.inputIncludeEnglishCheck(ID))
-            return "Eng";
+            return Eng;
         if(!this.inputIncludeNumberCheck(ID))
-            return "Num";
-        if(!this.inputIncludeIllegalCheck(ID))
-            return "Ill";
+            return Num;
+        if(this.inputIncludeIllegalCheck(ID))
+            return Ill;
         return "Suc";
     }
     String pwCheck(String ID){
         //check字數3~15、無非法字元
         if(!this.inputAmountCheck(ID))
-            return "Amo";
-        if(!this.inputIncludeIllegalCheck(ID))
-            return "Ill";
+            return Amo;
+        if(this.inputIncludeIllegalCheck(ID))
+            return Ill;
         return "Suc";
     }
     Boolean inputAmountCheck(String check){//字數3~15
@@ -91,7 +110,7 @@ public class Login{
             }
             return false;
     }
-    Boolean dataRepeatCheck(String check){
+    String dataCheck(String check){
        String line;
        String[] temp;
        try {
@@ -99,14 +118,13 @@ public class Login{
            while((line = br.readLine()) != null){
                temp = line.split(" ");
                if(temp[0].equals(check))
-                   return true;
+                   return temp[1];
                }
            br.close();
-           return false;
     } catch (IOException e) {
         // TODO 自動產生的 catch 區塊
         e.printStackTrace();
     }
-        return false;
+        return null;
     }
 }
